@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Photo Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Background Slideshow -->
+    <div class="background-slideshow">
+        <!-- Slides -->
+        <div class="slide" style="background-image: url('images/photo1.jpg'); animation-delay: 0s;"></div>
+        <div class="slide" style="background-image: url('images/photo2.jpg'); animation-delay: 6s;"></div>
+        <div class="slide" style="background-image: url('images/photo3.jpg'); animation-delay: 12s;"></div>
+        <div class="slide" style="background-image: url('images/photo4.jpg'); animation-delay: 18s;"></div>
+        <div class="slide" style="background-image: url('images/photo5.jpg'); animation-delay: 24s;"></div>
+        <div class="slide" style="background-image: url('images/photo6.jpg'); animation-delay: 30s;"></div>
+        <!-- <div class="slide combined" style="animation-delay: 36s;"></div> -->
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Sidebar -->
+<div class="sidebar">
+    <!-- Search Container -->
+    <div class="search-container">
+        <input type="text" id="search" placeholder="Search...">
+        <button id="searchButton">🔍</button>
+    </div>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li>
+                <a href="#" id="displayAll">Display All Galleries</a>
+            </li>
+            <li class="dropdown">
+                <a href="#" data-gallery="gallery1">Gallery 1</a>
+                <ul class="photo-list">
+                    <li>Elsa from Frozen</li>
+                    <li>Prey of Leopard</li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" data-gallery="gallery2">Gallery 2</a>
+                <ul class="photo-list hidden">
+                    <li>Miguel from Coco</li>
+                    <li>Moana with Pua, Heihei, and Maui</li>
+                </ul>
+            </li>
+            <li class="dropdown">
+                <a href="#" data-gallery="gallery3">Gallery 3</a>
+                <ul class="photo-list hidden">
+                    <li>Fairy Tale Love Fail</li>
+                    <li>Moana Sailing the Ship</li>
+                </ul>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+
+        <!-- Main Content Area -->
+        <div class="main-content">
+            <!-- Introduction Card -->
+            <div class="card-introduction">
+                <h2>Welcome to the Cartoon Photo Gallery</h2>
+                <p>Explore our collection of cartoon photos from popular animated movies.</p>
+            </div>
+
+            <!-- Gallery Sections -->
+            <section id="gallery1" class="gallery">
+                <h2>Gallery 1</h2>
+                <div class="image-gallery">
+                    <div class="card">
+                        <img src="images/photo1.jpg" alt="Elsa from Frozen">
+                        <div class="details">
+                            <p>Elsa from Frozen, the queen with ice powers.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images/photo2.jpg" alt="Prey of Leopard">
+                        <div class="details">
+                            <p>An animal likely to be hunted by a leopard.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="gallery2" class="gallery hidden">
+                <h2>Gallery 2</h2>
+                <div class="image-gallery">
+                    <div class="card">
+                        <img src="images/photo3.jpg" alt="Miguel from Coco">
+                        <div class="details">
+                            <p>Miguel from Coco, the boy who loves to play guitar.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images/photo4.jpg" alt="Moana with Pua, Heihei, and Maui">
+                        <div class="details">
+                            <p>Moana with Pua the pig, Heihei the rooster, and Maui.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="gallery3" class="gallery hidden">
+                            <h2>Gallery 3</h2>
+                <div class="image-gallery">
+                    <div class="card">
+                        <img src="images/photo5.jpg" alt="Fairy Tale Love Fail">
+                        <div class="details">
+                            <p>A failed love story from a fairy tale cartoon.</p>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <img src="images/photo6.jpg" alt="Moana Sailing the Ship">
+                        <div class="details">
+                            <p>Moana determined to sail the ship by herself.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="script.js"></script>
+    <script>
+        // Function to hide all galleries
+        function hideAllGalleries() {
+            const galleries = document.querySelectorAll('.gallery');
+            galleries.forEach(gallery => {
+                gallery.classList.add('hidden');
+            });
+        }
+
+        // Function to display all galleries
+        function displayAllGalleries() {
+            const galleries = document.querySelectorAll('.gallery');
+            galleries.forEach(gallery => {
+                gallery.classList.remove('hidden');
+            });
+        }
+
+        // Add event listener for "Display All Galleries" option
+        document.getElementById('displayAll').addEventListener('click', function(event) {
+            event.preventDefault();
+            displayAllGalleries();
+        });
+
+        // Add event listeners for dropdowns
+        document.querySelectorAll('.dropdown > a').forEach(dropdown => {
+            dropdown.addEventListener('click', function(event) {
+                event.preventDefault();
+                const targetGalleryId = this.getAttribute('data-gallery');
+                hideAllGalleries();
+                document.getElementById(targetGalleryId).classList.remove('hidden');
+            });
+        });
+
+        // Add event listener for toggling dropdown lists
+        document.querySelectorAll('.dropdown').forEach(dropdown => {
+            dropdown.addEventListener('click', function() {
+                this.querySelector('.photo-list').classList.toggle('hidden');
+            });
+        });
+
+        // Show the first gallery by default
+        document.getElementById('gallery1').classList.remove('hidden');
+    </script>
+</body>
+</html>

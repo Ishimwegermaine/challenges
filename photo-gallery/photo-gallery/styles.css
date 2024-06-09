@@ -1,0 +1,247 @@
+/* Base styles for mobile devices */
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.background-slideshow {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.background-slideshow .slide {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    animation: slideAnimation 6s linear infinite;
+}
+
+.background-slideshow .slide:nth-child(1) { animation-delay: 0s; }
+.background-slideshow .slide:nth-child(2) { animation-delay: 6s; }
+.background-slideshow .slide:nth-child(3) { animation-delay: 12s; }
+.background-slideshow .slide:nth-child(4) { animation-delay: 18s; }
+.background-slideshow .slide:nth-child(5) { animation-delay: 24s; }
+.background-slideshow .slide:nth-child(6) { animation-delay: 30s; }
+
+
+@keyframes slideAnimation {
+    0% { opacity: 0; }
+    10%, 90% { opacity: 1; }
+    100% { opacity: 0; }
+}
+
+.container {
+    display: flex;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+    z-index: 1;
+    position: relative;
+    height: 100vh; /* Set height to full viewport height */
+    overflow-y: auto; /* Allow vertical scrolling */
+}
+
+.sidebar {
+    flex: 0 0 250px; /* Adjust sidebar width */
+    background-color: #2c3e50;
+    padding: 20px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #ecf0f1;
+    z-index: 1;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.sidebar .search-container {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+.sidebar .search-container input {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    border-radius: 4px 0 0 4px;
+}
+
+.sidebar .search-container button {
+    padding: 8px;
+    border: none;
+    background-color: #2980b9;
+    color: #fff;
+    border-radius: 0 4px 4px 0;
+    cursor: pointer;
+}
+
+.sidebar .search-container button:hover {
+    background-color: #3498db;
+}
+
+.sidebar nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar nav ul li {
+    margin-bottom: 10px;
+}
+
+.sidebar nav ul li a {
+    text-decoration: none;
+    color: #ecf0f1;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.sidebar nav ul li a:hover {
+    color: #3498db;
+}
+
+.sidebar nav ul li .photo-list {
+    list-style: none;
+    padding-left: 20px;
+    margin-top: 5px;
+}
+
+.sidebar nav ul li .photo-list li {
+    font-size: 14px;
+    color: #bdc3c7;
+}
+
+.sidebar nav ul li .photo-list li:hover {
+    color: #ecf0f1;
+}
+
+.main-content {
+    flex: 1;
+    padding-left: 250px; /* Adjust padding to match sidebar width */
+    padding-right: 20px; /* Add padding to the right */
+}
+
+.image-gallery {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+}
+
+/* Medium screens */
+@media (min-width: 768px) {
+    .sidebar {
+        flex: 0 0 300px; /* Adjust sidebar width */
+    }
+
+    .main-content {
+        padding-left: 300px; /* Adjust padding to match sidebar width */
+    }
+
+    .image-gallery {
+        grid-template-columns: 1fr 1fr;
+    }
+}
+
+/* Large screens */
+@media (min-width: 1024px) {
+    .sidebar {
+        flex: 0 0 350px; /* Adjust sidebar width */
+    }
+
+    .main-content {
+        padding-left: 350px; /* Adjust padding to match sidebar width */
+    }
+
+    .image-gallery {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+
+.card {
+    position: relative;
+    overflow: hidden;
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.card:hover {
+    transform: scale(1.05);
+}
+
+.card img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.details {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: rgba(0, 0, 0, 0.7);
+    color: #fff;
+    padding: 16px;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.card:hover .details {
+    opacity: 1;
+    visibility: visible;
+}
+
+.hidden {
+    display: none;
+}
+
+.card-introduction {
+    padding: 20px;
+    background-color: rgba(52, 152, 219, 0.5); /* Transparent background color */
+    border-radius: 8px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 20px;
+    color: #fff; /* Change text color */
+}
+
+.card-introduction h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.card-introduction p {
+    font-size: 16px;
+    line-height: 1.6;
+}
+
+.card-introduction img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+.sidebar nav ul li ul {
+    display: none; /* Initially hide the dropdown lists */
+}
+
+.sidebar nav ul li.active ul {
+    display: block; /* Show the dropdown list when the parent is active */
+}
+.hidden {
+    display: none;
+}
